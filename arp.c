@@ -7,6 +7,8 @@
 #include <stdlib.h>
 #include <string.h>
 #include <arpa/inet.h>
+#include <netinet/ether.h>
+
 
 //You can fill the following functions or add other functions if needed. If not, you needn't write anything in them.  
 void set_hard_type(struct ether_arp *packet, unsigned short int type){
@@ -35,6 +37,7 @@ void set_target_hardware_addr(struct ether_arp *packet, char *address)
 void set_target_protocol_addr(struct ether_arp *packet, char *address)
 {}
 
+
 char* get_target_protocol_addr(struct ether_arp *packet) //get target ip addr
 {
 	struct in_addr recv_addr;
@@ -49,7 +52,10 @@ char* get_sender_protocol_addr(struct ether_arp *packet)
 }
 char* get_sender_hardware_addr(struct ether_arp *packet)
 {
-	// if you use malloc, remember to free it.
+	struct ether_addr send_mac;
+	char Sendmac[32];
+	memcpy(&send_mac,packet->arp_sha,6);
+	return ether_ntoa_r(&send_mac,Sendmac);
 }
 char* get_target_hardware_addr(struct ether_arp *packet)
 {
