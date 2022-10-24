@@ -26,7 +26,7 @@
  * If you don't know your device name, you can use "ifconfig" command on Linux.
  * You have to use "enp2s0f5" when you ready to upload your homework.
  */
-#define DEVICE_NAME "enp0s3"
+#define DEVICE_NAME "ens33"
 #define Packet_size 2000
 #define ETH_PALEN 4 	//ip addr length 4
 #define ETH_HALEN 6 	//hw addr length 6
